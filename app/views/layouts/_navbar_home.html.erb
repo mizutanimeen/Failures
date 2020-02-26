@@ -1,0 +1,27 @@
+<header class="mb-4">
+  <nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <%= link_to "ロゴ", root_path, class: "navbar-brand ml-sm-4" %>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        <%= link_to "詳細条件", details_path, class: "nav-link" %>
+        <form class="form-inline my-2 my-lg-0 mr-4">
+          <input class="form-control mr-sm-2" type="search" placeholder="検索" aria-label="Search">
+          <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">検索</button>
+        </form>
+        <% if logged_in? %>
+        <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li class="dropdown-item"><%= link_to "プロフィール", user_path(current_user) %></li>
+              <li class="dropdown-divider"></li>
+              <li class="dropdown-item"><%= link_to "ログアウト", logout_path, method: :delete %></li>
+            </ul>
+          </li>
+        <% else %>
+          <li class="nav-item"><%= link_to "新規登録", signup_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "ログイン", login_path, class: "nav-link" %></li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</header>

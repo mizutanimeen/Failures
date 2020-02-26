@@ -1,2 +1,28 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="text-center">
+  <h1>プロフィール変更</h1>
+</div>
+
+<div class="row">
+    <div class="col-sm-6 offset-sm-3">
+      <%= form_with(model: @user, local: true) do |f| %>
+        <%= render "layouts/error_messages", model: f.object %>
+      
+        <div class="form-group">
+          <%= f.label :name, "アカウント名" %>
+          <%= f.text_field :name, class: "form-control" %>          
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :email, "メールアドレス" %>
+          <%= f.email_field :email, class: "form-control" %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.file_field :picture %>
+          <%= f.label :picture, "アイコンに使う画像を選択" %>
+        </div>
+        
+        <%= f.submit "変更", class: "btn btn-block btn-dark", data: { confirm: "本当に変更しますか？" }%>
+      <% end %>
+    </div>
+  </div>

@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2020_02_24_095501) do
     t.string "name"
     t.string "email"
     t.string "password_digest"
-    t.string "image_name"
+    t.string "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

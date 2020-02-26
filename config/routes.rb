@@ -6,7 +6,17 @@ Rails.application.routes.draw do
   post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy"
   
+  get "details", to: "questions#details"
+  
   get "signup", to:  "users#new"
-  resources :users, only: [:index, :new, :create, :edit, :update, :destroy]
+  delete "withdraw", to: "users#destroy"
+  
+  resources :users, only: [:show, :new, :create, :edit, :update, :destroy] do
+    member do
+      get :post
+      get :reply
+    end
+  end
+    
   resources :questions
 end

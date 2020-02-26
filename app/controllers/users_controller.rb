@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:index, :edit]
-  
-  def index
+  before_action :require_user_logged_in, only: [:show, :edit, :update, :destroy]
+  before_action :user_unlogged_in, only: [:new, :create]
+
+  def show
+    @user = User.find(params[:id])
   end
 
   def new
@@ -10,7 +12,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    
+
     if @user.save
       flash[:success] = "アカウントを作成できました"
       redirect_to @user
@@ -21,9 +23,19 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def update
+    @user = User.find(params[:id])
+    
+    if @user.update(user_params)
+      flash[:success] = "プロフィールを変更しました"
+      redirect_to @user
+    else
+      flash[:danger] = "プロフィールを変更できませんでした"
+      render :edit
+    end
   end
 
   def destroy
@@ -33,10 +45,17 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
   
+  def post
+    @user = User.find(params[:id])
+  end
+  
+  def reply
+    @user = User.find(params[:id])
+  end
   
   private
   
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)  
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :picture)  
   end
 end
