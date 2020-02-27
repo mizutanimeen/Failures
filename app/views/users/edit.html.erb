@@ -1,8 +1,11 @@
-<div class="text-center">
-  <h1>プロフィール変更</h1>
-</div>
+<%= render "layouts/navbar_start" %>
 
-<div class="row">
+<div class="container">
+  <div class="text-center">
+    <h1>プロフィール変更</h1>
+  </div>
+
+  <div class="row">
     <div class="col-sm-6 offset-sm-3">
       <%= form_with(model: @user, local: true) do |f| %>
         <%= render "layouts/error_messages", model: f.object %>
@@ -18,11 +21,12 @@
         </div>
         
         <div class="form-group">
-          <%= f.file_field :picture %>
           <%= f.label :picture, "アイコンに使う画像を選択" %>
+          <%= f.file_field :picture %>
         </div>
         
         <%= f.submit "変更", class: "btn btn-block btn-dark", data: { confirm: "本当に変更しますか？" }%>
       <% end %>
     </div>
   </div>
+</div>

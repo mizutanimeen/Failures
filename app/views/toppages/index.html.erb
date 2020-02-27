@@ -1,0 +1,33 @@
+<%= render "layouts/navbar_home" %>
+
+<div class="container">
+  <% if logged_in? %>
+    <%= render "questions/upload" %>
+  <% else %>
+    <!--ログアウト中投稿機能をみせつつ使用不可-->
+  <% end %>
+  
+  <div class="row">
+    <aside class="col-sm-8">
+      <% @questions.each do |question| %>
+        <div>
+          <ul class="list-unstyled">
+            <li><%= link_to question.user.name, user_path(question.user) %></li>
+            <li><%= link_to question.title, question_path(question) %></li>
+            <li><%= question.content %></li>
+            <li><%= question.tag %></li>
+          </ul>
+          <div>
+            <% if current_user == question.user %>
+              <%= link_to "Delete", question, method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'btn btn-danger btn-sm' %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </aside>
+    <div class="col-sm-4">
+    <!--お知らせ-->
+
+    </div>
+  </div>
+</div>

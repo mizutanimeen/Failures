@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_user_logged_in, only: [:show, :edit, :update, :destroy]
   before_action :user_unlogged_in, only: [:new, :create]
+  before_action :correct_user, only: [:edit, :update, :destroy] 
 
   def show
     @user = User.find(params[:id])
@@ -39,7 +40,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(session[:user_id])
+    @user = User.find_by(id: session[:user_id])
     @user.destroy
     flash[:success] = "アカウントを削除しました"
     redirect_to root_url
@@ -57,5 +58,11 @@ class UsersController < ApplicationController
   
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :picture)  
+  end
+  
+  def correct_user
+    if request.referer == nil
+      redirect_to root_url
+    end
   end
 end

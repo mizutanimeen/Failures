@@ -1,0 +1,25 @@
+  <div class="row">
+    <%= form_with(model: @question, local: true, class: "topform") do |f| %>
+      <div class="row">
+        <div class="form-group col-sm-8">
+          <%= f.label :title, "タイトル" %>
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
+      
+        <div class="form-group col-sm-4">
+          <%= f.label :tag, "タグ" %>
+          <%= f.select :tag, [["人間関係","人間関係"],["仕事","仕事"],["家庭","家庭"]], class: "form-control" %>
+        </div>   
+      </div>
+      
+      <div class="row">
+        <div class="form-group col-sm-8">
+          <%= f.label :content, "内容" %>
+          <%= f.text_area :content, class: "form-control", rows: 2 %>
+        </div>   
+        <div class="col-sm-4">
+          <%= f.submit "投稿", class: "btn btn-sm btn-dark" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
