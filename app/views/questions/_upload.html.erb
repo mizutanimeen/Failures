@@ -1,25 +1,28 @@
-  <div class="row">
-    <%= form_with(model: @question, local: true, class: "topform") do |f| %>
-      <div class="row">
-        <div class="form-group col-sm-8">
-          <%= f.label :title, "タイトル" %>
-          <%= f.text_field :title, class: "form-control" %>
-        </div>
+<div class="row mb-5">
+  <div class="card w-100">
+    <div class="card-header">
+      <h1 class="text-center thin-text">投稿フォーム</h1>
+    </div>
+    <div class="card-body">
+      <%= form_with(model: @question, local: true, class: "w-100") do |f| %>
+    <div class="form-group">
+      <%= f.label :title, "タイトル" %>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
       
-        <div class="form-group col-sm-4">
-          <%= f.label :tag, "タグ" %>
-          <%= f.select :tag, [["人間関係","人間関係"],["仕事","仕事"],["家庭","家庭"]], class: "form-control" %>
-        </div>   
-      </div>
-      
-      <div class="row">
-        <div class="form-group col-sm-8">
-          <%= f.label :content, "内容" %>
-          <%= f.text_area :content, class: "form-control", rows: 2 %>
-        </div>   
-        <div class="col-sm-4">
-          <%= f.submit "投稿", class: "btn btn-sm btn-dark" %>
-        </div>
-      </div>
-    <% end %>
+    <div class="form-group">
+      <%= f.label :tag, "タグ" %>
+      <%= f.select :tag, [["その他","その他"],["仕事","仕事"],["家庭","家庭"]], {}, class: "form-control" %>
+    </div>   
+
+    <div class="form-group">
+      <%= f.label :content, "内容" %>
+      <%= f.text_area :content, class: "form-control", rows: 2 %>
+    </div>   
+    <div>
+      <%= f.submit "投稿", class: "btn btn-block btn-dark" %>
+    </div>
+  <% end %>
+    </div>
   </div>
+</div>

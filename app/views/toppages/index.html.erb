@@ -4,30 +4,26 @@
   <% if logged_in? %>
     <%= render "questions/upload" %>
   <% else %>
-    <!--ログアウト中投稿機能をみせつつ使用不可-->
+    <%= render "questions/unupload" %>
   <% end %>
-  
+
   <div class="row">
-    <aside class="col-sm-8">
+    <div class="col-sm-8 p-0 mb-5">
+      <h1 class="reverse-color">メッセージ一覧</h1>
+      
       <% @questions.each do |question| %>
-        <div>
+        <div class="frame">
           <ul class="list-unstyled">
-            <li><%= link_to question.user.name, user_path(question.user) %></li>
-            <li><%= link_to question.title, question_path(question) %></li>
-            <li><%= question.content %></li>
-            <li><%= question.tag %></li>
+            <li class="toppage-question-title"><h5><%= link_to question.title, question_path(question) %></h5></li>
           </ul>
-          <div>
-            <% if current_user == question.user %>
-              <%= link_to "Delete", question, method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'btn btn-danger btn-sm' %>
-            <% end %>
-          </div>
         </div>
       <% end %>
-    </aside>
-    <div class="col-sm-4">
-    <!--お知らせ-->
-
+      
+      <%= paginate @questions, window: 2 %>
     </div>
+
+    <aside class="col-sm-3 offset-sm-1 frame p-0 mb-5">
+      <h1 class="reverse-color text-center">お知らせ</h1>
+    </aside>
   </div>
 </div>

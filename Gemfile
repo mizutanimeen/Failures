@@ -59,3 +59,6 @@ gem "kaminari"
 gem 'rails-i18n'
 
 gem 'carrierwave'
+
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'

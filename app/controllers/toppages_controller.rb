@@ -3,6 +3,6 @@ class ToppagesController < ApplicationController
     if logged_in? 
       @question = current_user.questions.build
     end
-    @questions = Question.order('created_at desc').page(params[:page])
+    @questions = Question.page(params[:page]).per(5).order('created_at desc')
   end
 end

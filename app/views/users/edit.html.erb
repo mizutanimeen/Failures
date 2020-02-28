@@ -21,12 +21,24 @@
         </div>
         
         <div class="form-group">
-          <%= f.label :picture, "アイコンに使う画像を選択" %>
-          <%= f.file_field :picture %>
+          <%= f.label :picture, "アイコン画像" %>
+          <%= f.file_field :picture, class: "d-none", id: "lefile" %>
+          
+          <div class="input-group">
+            <input type="text" id="photoCover" class="form-control" placeholder="画像を選択してください">
+            <span class="input-group-btn"><button type="button" class="btn btn-dark" onclick="$('input[id=lefile]').click();">画像を選ぶ</button></span>          
+          </div>
         </div>
-        
+
+        <script>
+          $('input[id=lefile]').change(function() {
+            $('#photoCover').val($(this).val());
+          });
+        </script>
+
         <%= f.submit "変更", class: "btn btn-block btn-dark", data: { confirm: "本当に変更しますか？" }%>
       <% end %>
     </div>
   </div>
 </div>
+
