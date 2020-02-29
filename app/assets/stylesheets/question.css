@@ -2,6 +2,13 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
 
+.word-table {
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+/*index*/
+
 .thin-text {
   color: rgba(0, 0, 0, 0.7);
 }
@@ -38,18 +45,43 @@ h1, h2, h3, h4, h5, h6 {
   color: #343a40;
 }
 
-.show-question-message {
-  width: 100%;
-  table-layout: fixed;
-  word-wrap: break-word;
-}
+/*show*/
 
 .show-question-title {
-  border-bottom: 2px solid #343a40;
-  font-size: 32px;
-  font-weight: bold;
+  width: 100%;
+  border-bottom: 4px solid #343a40;
+  padding: 0 20px;
+}
+
+.show-question-name {
+  margin-top: 16px;
+  padding: 0 20px;
 }
 
 .show-question-content {
-  margin-top: 20px;
+  padding: 24px 0 24px 20px;
+  font-size: 20px;
+  border-bottom: 4px double #343a40;
+}
+
+.show-question-tag {
+  padding: 8px 20px 24px;
+  border-bottom: 2px solid #343a40;
+  margin-bottom: 40px;
+}
+
+.answer-card {
+  margin-bottom: 50px;
+}
+
+.answer-title {
+  padding: 0 0 8px 24px;
+  border-bottom: 4px double #343a40;
+  width: 100%;
+}
+
+.answer-content {
+  padding: 20px 10px 4px;
+  border-bottom: 3px solid #d1d1d1;
+  margin-bottom: 10px;
 }

@@ -1,23 +1,67 @@
 <%= render "layouts/navbar_home" %>
 
 <div class="container">
-  <div class="row">
-    <div class="show-question-message">
-      <p class="show-question-title"><%= @question.title %></p>
-      
-      <p class="show-question-content"><%= @question.content %></p>
-      
-      <p><%= @question.user.name %></p>
-      
-      <p><%= @question.tag %></p>
-      
-      <% if current_user == @question.user %>
-        <%= link_to "Delete", @question, method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'btn btn-danger btn-sm' %>
-      <% end %>
+  <div>
+    <div class="row">
+      <div class="show-question-title word-table">
+        <h3><%= @question.title %></h3>
+      </div>
+    </div>
+    <div>
+      <div class="row show-question-content">
+        <%= @question.content %>  
+      </div>
+      <div class="row show-question-name">
+        名前：<%= link_to @question.user.name, user_path(@question.user.id) %>
+      </div>
+      <div class="row d-flex align-items-center justify-content-between show-question-tag">
+        <div>
+          タグ：<%= @question.tag %>
+        </div>
+        <div>
+          <% if current_user == @question.user %>
+            <%= link_to "Delete", @question, method: :delete, data: { confirm: "メッセージを本当に削除しますか？" }, class: 'btn btn-danger btn-sm' %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
   
+  <div class="row card answer-card">
+    <div class="card-header w-100">
+      <h4>回答フォーム</h4>
+    </div>
+    
+    <%= form_with(model: [@question, @answer], local: true, class: "w-100") do |f| %>
+      <div class="form-group m-0">
+        <%= f.text_area :content, class: "form-control", rows: 4 %>  
+      </div>
+      
+      <%= f.submit "回答", class: "btn btn-block btn-dark" %>
+    <% end %>
+  </div>
+  
   <div class="row">
-
+    <h3 class="answer-title">回答一覧</h3>
+      
+    <% @answers.each do |answer| %>
+      <div class="w-100">
+        <%= link_to answer.user.name, user_path(answer.user.id) %>    
+      </div>
+      <div class="answer-content w-100">
+        <div class="word-table">
+          <%= answer.content %>  
+        </div>
+        <div class="w-100 d-flex flex-row justify-content-end">
+          <% if current_user == answer.user || current_user.id == @question.user.id %>
+            <%= link_to "Delete", answer, method: :delete, data: { confirm: "コメントを本当に削除しますか？" }, class: 'btn btn-danger btn-sm' %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    
+    <div class="text-center w-100">
+      <%= paginate @answers, window: 2 %>
+    </div>
   </div>
 </div>

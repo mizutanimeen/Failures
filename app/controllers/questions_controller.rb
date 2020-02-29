@@ -8,6 +8,9 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
+    
+    @answers = @question.answers.paginate(page: params[:page], per_page: 5).order('created_at desc')
+    @answer = current_user.answers.build
   end
 
   def new
@@ -15,7 +18,8 @@ class QuestionsController < ApplicationController
 
   def create
     @question = current_user.questions.build(question_params)
-    
+    @question.user_id = current_user.id
+
     if @question.save
       flash[:success] = "メッセージを投稿しました"
       redirect_to @question
@@ -34,9 +38,8 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
     flash[:success] = 'メッセージを削除しました。'
-    redirect_back(fallback_location: root_path)
+    redirect_to root_url
   end
-  
   
   private
   

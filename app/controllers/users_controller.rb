@@ -48,6 +48,8 @@ class UsersController < ApplicationController
   
   def post
     @user = User.find(params[:id])
+    
+    @posts = @user.questions.paginate(page: params[:page], per_page: 5).order('created_at desc')
   end
   
   def reply

@@ -9,6 +9,8 @@ class User < ApplicationRecord
   
   has_many :questions
   has_many :questions, dependent: :destroy 
+  
+  has_many :answers
 
   mount_uploader :picture, PictureUploader
 end

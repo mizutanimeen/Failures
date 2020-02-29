@@ -1,2 +1,13 @@
 <%= render "layouts/navbar_profail" %>
-<h1>投稿数</h1>
+
+<div class="container">
+  <h1 class="reverse-color">投稿一覧</h1>
+    <% @posts.each do |post| %>
+  <div class="frame">
+    <ul class="list-unstyled word-table">
+      <li class="toppage-question-title"><h5><%= link_to post.title, question_path(post) %></h5></li>
+    </ul>
+  </div>
+<% end %>
+</div>
+
