@@ -3,3 +3,13 @@ max-width: 100%;
 height: auto;
 width /***/:auto;
 }
+
+/*reply*/
+
+.reply-content {
+  padding: 20px;
+}
+
+.reply-border {
+  border-bottom: 4px dashed #343a40;
+}

@@ -27,37 +27,65 @@
     </div>
   </div>
   
-  <div class="row card answer-card">
-    <div class="card-header w-100">
-      <h4>回答フォーム</h4>
-    </div>
-    
-    <%= form_with(model: [@question, @answer], local: true, class: "w-100") do |f| %>
-      <div class="form-group m-0">
-        <%= f.text_area :content, class: "form-control", rows: 4 %>  
-      </div>
-      
-      <%= f.submit "回答", class: "btn btn-block btn-dark" %>
+  <% @answers.each do |answer| %>
+    <% if answer.user == current_user %>
+      <% @myansweruser = answer.user %>
+      <% @myanswer = answer %>
     <% end %>
-  </div>
+  <% end %>
   
-  <div class="row">
-    <h3 class="answer-title">回答一覧</h3>
-      
+  <% if logged_in? %>
+    <% if current_user == @myansweruser %>
+      <div class="row">
+        <div class="card mb-5 w-100">
+          <div class="card-header">
+            <h3>あなたの回答</h3>
+          </div>
+        
+          <div class="card-body">
+            <div class="word-table">
+              <%= @myanswer.content %>
+            </div>
+            <div class="w-100 d-flex flex-row justify-content-end">
+              <%= link_to "Delete", @myanswer, method: :delete, data: { confirm: "コメントを本当に削除しますか？" }, class: 'btn btn-danger btn-sm' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <%= render "answerform" %>
+    <% end %>
+  <% else %>
+    <%= render "answerunform" %>
+  <% end %>
+                                                
+  <div class="row mb-5">
+    <h3 class="answer-title">他の人の回答一覧</h3>
+    <% if @answers.count == 0 %>
+      <h3 class="answer-none">回答はありません</h3>
+    <% end %>
     <% @answers.each do |answer| %>
-      <div class="w-100">
-        <%= link_to answer.user.name, user_path(answer.user.id) %>    
-      </div>
-      <div class="answer-content w-100">
-        <div class="word-table">
-          <%= answer.content %>  
+      <% if answer.user == current_user %>
+        <% if @answers.count == 1 %>
+          <h3 class="answer-none">回答はありません</h3>
+        <% end %>
+      <% end %>
+    
+      <% unless current_user == answer.user %>
+        <div class="w-100">
+          <%= link_to answer.user.name, user_path(answer.user.id) %>    
         </div>
-        <div class="w-100 d-flex flex-row justify-content-end">
-          <% if current_user == answer.user || current_user.id == @question.user.id %>
-            <%= link_to "Delete", answer, method: :delete, data: { confirm: "コメントを本当に削除しますか？" }, class: 'btn btn-danger btn-sm' %>
-          <% end %>
+        <div class="answer-content w-100">
+          <div class="word-table">
+            <%= answer.content %>  
+          </div>
+          <div class="w-100 d-flex flex-row justify-content-end">
+            <% if current_user == answer.user || current_user == @question.user %>
+              <%= link_to "Delete", answer, method: :delete, data: { confirm: "コメントを本当に削除しますか？" }, class: 'btn btn-danger btn-sm' %>
+            <% end %>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
     
     <div class="text-center w-100">

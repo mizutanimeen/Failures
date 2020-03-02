@@ -1,3 +1,17 @@
 <%= render "layouts/navbar_profail" %>
 
-<h1>回答数</h1>
+<div class="container">
+  <h1 class="reverse-color">回答一覧</h1>
+  <% @replys.each do |reply| %>
+    
+    <div class="frame reply-frame">
+      <div class="word-table">
+        <div class="reply-content reply-border"><h5>投稿：  <%= reply.question.title %></h5></div>
+        <% @question_id = reply.question.id %>
+        <div class="reply-content"><h5>回答：  <%= link_to reply.content, question_path(@question_id) %></h5></div>
+      </div>
+    </div>
+  <% end %>
+
+  <%= paginate @replys, window: 2 %>
+</div>

@@ -1,0 +1,29 @@
+<%= render "layouts/navbar_home" %>
+
+<div class="container">
+  <div class="row">
+    <%= form_with(url: search_questions_path, method: :get, local: true, class: "w-100") do |f| %>
+      <div class="form-group">
+        <%= f.label :title, "キーワード" %>
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
+      <%= f.submit "検索", class: "btn btn-block btn-dark" %>
+    <% end %>
+    <table>
+      <thead>
+        <tr>
+          <th>検索結果</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @questions.each do |question| %>
+          <tr>
+            <td><h3><%= link_to question.title, question_path(question) %></h3></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+

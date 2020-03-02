@@ -6,8 +6,6 @@ Rails.application.routes.draw do
   post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy"
   
-  get "details", to: "questions#details"
-  
   get "signup", to:  "users#new"
   delete "withdraw", to: "users#destroy"
   
@@ -20,6 +18,8 @@ Rails.application.routes.draw do
     
   resources :questions do
     resources :answers, only: [:create]
+    get :search, on: :collection
+    get :search, to: "questions#search"
   end
   
   resources :answers, only: [:destroy]

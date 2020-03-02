@@ -54,6 +54,8 @@ class UsersController < ApplicationController
   
   def reply
     @user = User.find(params[:id])
+    
+    @replys = @user.answers.paginate(page: params[:page], per_page: 5).order('created_at desc')
   end
   
   private
