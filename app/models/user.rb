@@ -11,6 +11,27 @@ class User < ApplicationRecord
   has_many :questions, dependent: :destroy 
   
   has_many :answers
-
+  
+  has_many :microposts
+  
   mount_uploader :picture, PictureUploader
+
+  has_many :favorites
+  has_many :favoritings, through: :favorites, source: :question
+  
+  def favorite(question)
+    unless self == question
+      self.favorites.find_or_create_by(question_id: question.id)
+    end
+  end
+
+  def unfavorite(question)
+    favorite = self.favorites.find_by(question_id: question.id)
+    favorite.destroy if favorite
+  end
+
+  def favoritings?(question)
+    self.favoritings.include?(question)
+  end
+  
 end

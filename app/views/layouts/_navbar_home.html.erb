@@ -7,11 +7,15 @@
     
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav">
-        <%= link_to "詳細条件", search_questions_path, class: "nav-link" %>
-        <form class="form-inline my-2 my-lg-0 mr-4">
-          <input class="form-control mr-sm-2" type="search" placeholder="検索" aria-label="Search">
-          <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">検索</button>
-        </form>
+        <%= link_to "詳細条件", search_path, class: "nav-link" %>
+        
+        <%= form_with(url: search_questions_path, method: :get, local: true, class: "pr-3") do |f| %>
+          <div class="form-group m-0 d-flex flex-row">
+            <%= f.text_field :title, class: "form-control", placeholder: "キーワードで検索" %>
+            <%= f.submit "検索", class: "btn btn-md btn-dark ml-1" %>
+          </div>
+        <% end %>
+    
         <% if logged_in? %>
         <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
@@ -31,7 +35,10 @@
   <nav class="navbar navbar-expand navbar-dark bg-dark">
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <ul class="navbar-nav">
-        <li class="nav-item"><%= link_to "TOPページ", root_path, class: "nav-link" %></li>
+        <li class="nav-item ml-sm-3"><%= link_to "TOP", root_path, class: "nav-link" %></li>
+        <li class="nav-item ml-sm-4"><%= link_to "ランキング", ranking_path, class: "nav-link" %></li>
+        <li class="nav-item ml-sm-4"><%= link_to "タグ検索",  tags_path, class: "nav-link" %></li>
+        <li class="nav-item ml-sm-4"><%= link_to "お知らせ", news_path, class: "nav-link" %></li>
       </ul>
     </div>
   </nav>

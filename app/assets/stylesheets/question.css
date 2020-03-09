@@ -2,6 +2,10 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
 
+p {
+  margin: 0;
+}
+
 .word-table {
   table-layout: fixed;
   word-wrap: break-word;
@@ -28,6 +32,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .toppage-question-title {
   padding: 24px 24px 4px;
+}
+
+.toppage-question-content {
+  padding: 0px 24px 12px;
 }
 
 .pagination {
@@ -59,7 +67,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .show-question-content {
-  padding: 24px 0 24px 20px;
+  padding: 24px 24px 20px;
   font-size: 20px;
   border-bottom: 4px double #343a40;
 }
@@ -97,3 +105,12 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 20px;
 }
 
+.btn-default {
+  padding: 0;
+}
+
+.fa-heart {
+  color: #ffb6c1;
+  font-size: 25px;
+  padding: 0;
+}

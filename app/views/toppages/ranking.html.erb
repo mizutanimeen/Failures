@@ -1,0 +1,27 @@
+<%= render "layouts/navbar_home" %>
+
+<div class="container">
+  <div class="row"> 
+    <div class="w-100 mb-5">
+      <h1 class="reverse-color">いいねランキング</h1>
+      
+      <% @rankings.each.with_index(1) do |rank, i| %>
+        <div class="frame">
+          <h3 class="rank-nonber word-table"><%= i %>位  <%= link_to rank.title, question_path(rank) %></h3>
+          <ul class="list-unstyled word-table m-0">
+            <li class="toppage-question-content rank-font">
+              <%= truncate(rank.content, length: 100, omission: ' ') do %>
+                <%= link_to "続きを読む…", question_path(rank) %>
+              <% end %>
+            </li>
+            <li class="d-flex d-row justify-content-end rank-p">
+              <div>
+                いいね <%= rank.favorites.count %>
+              </div>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

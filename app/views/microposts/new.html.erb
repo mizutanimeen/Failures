@@ -1,0 +1,26 @@
+<%= render "layouts/navbar_home" %>
+
+<div class="container">
+  <div class="row">
+    <h1 class="w-100 text-center">お知らせ一覧</h1>
+    <% @microposts.each do |micropost| %>
+      <div class="new-micropost word-table">
+        <div class="new-micropost-title">
+          <%= link_to micropost.title, micropost_path(micropost), class: "new-micropost-title-txt" %>
+        </div>
+        <div class="new-micropost-content">
+          <%= truncate(micropost.content, length: 300, omission: ' ') do %>
+            <%= link_to "続きを読む…", micropost_path(micropost) %>
+          <% end %>
+        </div>
+        <div class="new-micropost-time">
+          <%= micropost.created_at %>
+        </div>
+      </div>
+    <% end %>
+    
+    <div class="text-center w-100 mb-4">
+      <%= paginate @microposts, window: 2 %>
+    </div>
+  </div>
+</div>

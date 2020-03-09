@@ -7,23 +7,17 @@
         <%= f.label :title, "キーワード" %>
         <%= f.text_field :title, class: "form-control" %>
       </div>
+      <div class="form-group">
+        <%= f.label :tag, "タグ" %>
+        <%= f.select :tag, [["選択しない","選択しない"],["その他","その他"],["仕事","仕事"],["家庭","家庭"]], {}, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :created_at, "時間指定" %>
+        <%= f.select :created_at, [["選択しない","選択しない"],["一年以内","一年以内"],["一ヶ月以内","一ヶ月以内"],["一週間以内","一週間以内"],["一日以内","一日以内"]], {}, class: "form-control" %>
+      </div>
+      
       <%= f.submit "検索", class: "btn btn-block btn-dark" %>
     <% end %>
-    <table>
-      <thead>
-        <tr>
-          <th>検索結果</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @questions.each do |question| %>
-          <tr>
-            <td><h3><%= link_to question.title, question_path(question) %></h3></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
   </div>
 </div>
-
-

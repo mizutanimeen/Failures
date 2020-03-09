@@ -7,14 +7,19 @@
     <%= render "questions/unupload" %>
   <% end %>
 
-  <div class="row">
-    <div class="col-sm-8 p-0 mb-5">
+  <div class="w-100"> 
+    <div class="col-xl-8 p-0 mb-5 float-l">
       <h1 class="reverse-color">メッセージ一覧</h1>
       
       <% @questions.each do |question| %>
         <div class="frame">
           <ul class="list-unstyled word-table">
             <li class="toppage-question-title"><h5><%= link_to question.title, question_path(question) %></h5></li>
+            <li class="toppage-question-content">
+              <%= truncate(question.content, length: 100, omission: ' ') do %>
+                <%= link_to "続きを読む…", question_path(question) %>
+              <% end %>
+            </li>
           </ul>
         </div>
       <% end %>
@@ -22,8 +27,25 @@
       <%= paginate @questions, window: 2 %>
     </div>
 
-    <aside class="col-sm-3 offset-sm-1 frame p-0 mb-5">
+    <aside class="col-xl-3 offset-xl-1 frame p-0 mb-5 position-r float-r">
       <h1 class="reverse-color text-center">お知らせ</h1>
+      <% @microposts.each do |micropost| %>
+        <div class="top-micropost-block">
+          <div class="top-micropost-title word-table">
+            <%= link_to micropost.title, micropost_path(micropost) %>
+          </div> 
+          <div class="top-micropost-content word-table">
+            <%= truncate(micropost.content, length: 100, omission: ' ') do %>
+              <%= link_to "続きを読む…", micropost_path(micropost) %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      <div class="micropost-bottom">
+        <%= link_to "一覧へ", news_path, class: "micropost-bottom" %>
+      </div>
     </aside>
+    
+    <div class="clear"></div>    
   </div>
 </div>

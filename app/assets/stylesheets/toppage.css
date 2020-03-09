@@ -1,0 +1,57 @@
+/*top*/
+.clear {
+  clear: both;
+}
+
+.float-r {
+  float: right;
+}
+
+.float-l {
+  float: left;
+}
+
+.micropost-bottom {
+  color: white;
+  background-color: #343a40;
+  text-decoration: none;
+  font-size: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+.micropost-bottom:hover {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.top-micropost-block {
+  padding: 20px 10px;
+  border-bottom: 2px solid #343a40;
+}
+
+.top-micropost-title {
+  border-bottom: 1px solid #343a40;
+}
+
+.top-micropost-content {
+  padding: 10px 0 10px;
+}
+
+
+/*ranking*/
+.rank-nonber {
+  border-bottom: 2px solid #000;
+  padding-top: 12px;
+  margin-right:24px;
+  margin-left: 24px;
+}
+
+.rank-p {
+  padding: 0px 24px 12px;
+}
+
+.rank-font {
+  font-size: 20px;
+}
+

@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:show, :edit, :update, :destroy]
+  before_action :require_user_logged_in, only: [:edit, :update, :destroy]
   before_action :user_unlogged_in, only: [:new, :create]
   before_action :correct_user, only: [:edit, :update, :destroy] 
 
   def show
     @user = User.find(params[:id])
+    counts(@user)
   end
 
   def new
@@ -16,6 +17,7 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:success] = "アカウントを作成できました"
+      session[:user_id] = @user.id
       redirect_to @user
     else
       flash.now[:danger] = "アカウントを作成できませんでした"
@@ -50,12 +52,20 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     
     @posts = @user.questions.paginate(page: params[:page], per_page: 5).order('created_at desc')
+    
+     counts(@user)
   end
   
   def reply
     @user = User.find(params[:id])
     
     @replys = @user.answers.paginate(page: params[:page], per_page: 5).order('created_at desc')
+  
+    counts(@user)
+  end
+  
+  def admin
+    @admin = Admin.new
   end
   
   private

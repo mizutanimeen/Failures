@@ -1,0 +1,35 @@
+<%= render "layouts/navbar_home" %>
+
+<div class="container">
+  <div class="row m-3">
+    <table class="w-100 word-table">
+      <thead>
+        <tr>
+          <th class="result-border"><% if @questions.count > 0 && @searchtext == 1 %>検索結果 <%= @questions.count %>件<% end %></th>
+        </tr>
+      </thead>
+      <tbody class="word-table">
+        <% if @questions.count == 0 && @searchtext == 1 %>
+          <h2>該当するタイトルはありません</h2>
+        <% else %>
+          <% @questions.each do |question| %>
+            <tr class="word-table">
+              <td class="word-table">
+                <h3 class="word-table"><%= link_to question.title, question_path(question) %></h3>
+                <%= truncate(question.content, length: 100, omission: ' ') do %>
+                  <%= link_to "続きを読む…", question_path(question) %>
+                <% end %>
+                <div class="word-table">タグ：  <%= question.tag %></div>
+                <div class="result-m"><%= question.created_at %></div>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    
+    <div class="w-100 text-center">
+      <%= paginate @questions, window: 2 %>
+    </div>
+  </div>
+</div>

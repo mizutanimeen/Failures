@@ -16,6 +16,8 @@ class QuestionsController < ApplicationController
     else
       @answer = Answer.new
     end
+    
+    question_counts(@question)
   end
 
   def new
@@ -48,6 +50,15 @@ class QuestionsController < ApplicationController
   
   def search
     if params[:title].present?
+      @content = params[:title]
+      @tag = params[:tag]
+      @created = params[:created_at]
+      redirect_to result_path(title: @content, tag: @tag, period: @created)
+    end
+  end
+
+  def result
+    if params[:title].present?
       titles = params[:title].split(/[[:blank:]]+/).select(&:present?)
       
       negative_titles, positive_titles = titles.partition {|title| title.start_with?("-") }
@@ -64,6 +75,25 @@ class QuestionsController < ApplicationController
         next if title.blank?
         @questions = @questions.where.not("title LIKE ?", "%#{title}%")
       end
+      
+      if params[:tag].present? && params[:tag] != "選択しない" 
+        @questions = @questions.where("tag = ?", params[:tag])
+      end
+      
+      search_date = Time.current
+      
+      if params[:period].present? && params[:period] != "選択しない" && params[:period] == "一年以内"
+        @questions = @questions.where("? <= created_at", search_date - 1.years)
+      elsif params[:period].present? && params[:period] != "選択しない" && params[:period] == "一ヶ月以内"
+        @questions = @questions.where("? <= created_at", search_date - 1.months)
+      elsif params[:period].present? && params[:period] != "選択しない" && params[:period] == "一週間以内"
+        @questions = @questions.where("? <= created_at", search_date - 1.weeks )
+      elsif params[:period].present? && params[:period] != "選択しない" && params[:period] == "一日以内"
+        @questions = @questions.where("? <= created_at", search_date - 1.days )
+      end
+      
+      @questions = @questions.page(params[:page]).per(5).order('created_at desc')
+      @searchtext = 1
     else
       @questions = Question.none
     end

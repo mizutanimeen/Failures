@@ -1,0 +1,15 @@
+.tags-title {
+  border-bottom: 2px solid #343a40;
+}
+
+.tags-content {
+  width: 100%;
+  padding: 20px 10px;
+}
+
+.tags-content-txt {
+  font-size: 20px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #343a40;
+  margin-bottom: 10px;
+}

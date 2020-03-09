@@ -1,0 +1,23 @@
+<%= render "layouts/navbar_home" %>
+
+<div class="container">
+  <div class="row">
+    <div class="show-question-title word-table">
+      <h3><%= @micropost.title %></h3>
+    </div>
+  </div>
+  <div class="row show-question-content">
+    <div class="word-table w-100">
+      <%= text_url_to_link(h(safe_join(@micropost.content.split("\n"),tag(:br)))).html_safe %>
+    </div>
+  </div>
+  <% if logged_in? %>
+    <% if current_user.admin? %>
+      <div class="row d-flex align-items-center justify-content-end micropost-show-btn">
+        <div>
+          <%= link_to "Delete", @micropost, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

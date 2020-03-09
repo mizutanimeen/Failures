@@ -1,0 +1,27 @@
+<%= render "layouts/navbar_home" %>
+
+<div class="container"> 
+  <div class="row">
+    <div class="tags-title w-100">
+      <h2 class="d-inline-block m-0">家庭</h2>
+      <h5 class="d-inline-block mb-0 ml-2"><%= @questions.count %> 件</h5>
+    </div>
+    
+    <div class="tags-content word-table">
+      <% @questions.each do |question| %>
+        <div class="word-table w-100 mb-3">
+          <h4><%= link_to question.title, question_path(question) %></h4>
+          <p class="tags-content-txt">
+            <%= truncate(question.content, length: 100, omission: ' ') do %>
+              <%= link_to "続きを読む…", question_path(question) %>
+            <% end %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="text-center w-100 mb-3">
+      <%= paginate @questions, window: 2 %>
+    </div>
+  </div>
+</div>

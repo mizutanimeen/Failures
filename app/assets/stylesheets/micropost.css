@@ -1,0 +1,35 @@
+/*show*/
+.micropost-show-btn {
+  padding: 10px 20px;
+  border-bottom: 2px solid #000;
+}
+
+/*new*/
+.new-micropost-title {
+  border-bottom: 2px solid #000;
+  width: 100%;
+}
+
+.new-micropost-title-txt {
+  color: black;
+  font-size: 28px;
+}
+
+.new-micropost-title-txt:hover {
+  text-decoration: none;
+}
+
+.new-micropost-content {
+  padding: 20px 0 4px;
+  width: 100%;
+}
+
+.new-micropost-time {
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.new-micropost {
+  width: 100%;
+  margin: 0 10px 10px;
+}

@@ -1,0 +1,22 @@
+<%= render "layouts/navbar_home" %>
+
+<div class="container">
+  <div class="row">
+    <h1 class="w-100">タグ検索</h1>
+    
+    <div class="ml-2">
+      <%= link_to "その他", other_tags_path %>
+      <div><%= @questions.where(tag: "その他").count %> 件</div>
+    </div>
+    
+    <div class="ml-2">
+      <%= link_to "仕事", work_tags_path %>
+      <div><%= @questions.where(tag: "仕事").count %> 件</div>
+    </div>
+    
+    <div class="ml-2">
+      <%= link_to "家庭", home_tags_path %>
+      <div><%= @questions.where(tag: "家庭").count %> 件</div>
+    </div>
+  </div>
+</div>
