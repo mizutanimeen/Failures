@@ -37,7 +37,9 @@ class MicropostsController < ApplicationController
   private
   
   def admin?
-    redirect_to root_url unless current_user.email == "marimo@kanri.com"
+    unless current_user.admin?
+     redirect_to root_url
+    end
   end
   
   def micropost_params
