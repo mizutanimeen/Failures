@@ -114,3 +114,20 @@ p {
   font-size: 25px;
   padding: 0;
 }
+
+.relation {
+  padding: 10px 24px;
+  margin-bottom: 24px;
+  border: 1px solid #343a40;
+}
+
+.relation-title {
+  width: 100%;
+  border-bottom: 1px solid #343a40;
+}
+
+.relation-title-txt {
+  width: 100%;
+  border-bottom: 1px solid #343a40;
+  margin: 10px 0;
+}

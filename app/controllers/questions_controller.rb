@@ -18,6 +18,8 @@ class QuestionsController < ApplicationController
     end
     
     question_counts(@question)
+    
+    @questions = Question.where(tag: @question.tag)
   end
 
   def new

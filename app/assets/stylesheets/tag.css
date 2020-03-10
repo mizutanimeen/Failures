@@ -1,3 +1,23 @@
+/*top*/
+.tag-p {
+  width: 100%;
+  padding: 0 12px;
+}
+
+.tag-top-title {
+  width: 100%;
+  border-bottom: 2px solid #343a40;
+}
+
+.tags-tag {
+  width: 100%;
+  padding: 20px 0 0;
+  border-bottom: 1px solid #343a40;
+  margin: 0;
+}
+
+
+/*show;*/
 .tags-title {
   border-bottom: 2px solid #343a40;
 }
