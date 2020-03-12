@@ -1,7 +1,8 @@
-/*top*/
+/*tag*/
 .tag-p {
   width: 100%;
   padding: 0 12px;
+  margin-bottom: 20px;
 }
 
 .tag-top-title {
@@ -16,6 +17,19 @@
   margin: 0;
 }
 
+.tags-tag-title {
+  display: inline-block;
+  margin: 0;
+}
+
+.tags-tag-title-txt {
+  color: black;
+}
+
+.tags-tag-title-txt:hover {
+  text-decoration: none;
+}
+
 
 /*show;*/
 .tags-title {
@@ -24,12 +38,24 @@
 
 .tags-content {
   width: 100%;
-  padding: 20px 10px;
+  padding: 20px 0px;
 }
 
 .tags-content-txt {
-  font-size: 20px;
+  font-size: 16px;
   padding-bottom: 20px;
   border-bottom: 2px solid #343a40;
   margin-bottom: 10px;
+}
+
+.font-size-16 {
+  font-size: 16px;
+}
+
+.tag-show-title-txt {
+  color: #000;
+}
+
+.tag-show-title-txt:hover {
+  text-decoration: none;
 }

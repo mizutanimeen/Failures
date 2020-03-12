@@ -6,9 +6,9 @@
     
     <div class="frame reply-frame">
       <div class="word-table">
-        <div class="reply-content reply-border"><h5>投稿：  <%= reply.question.title %></h5></div>
         <% @question_id = reply.question.id %>
-        <div class="reply-content"><h5>回答：  <%= link_to reply.content, question_path(@question_id) %></h5></div>
+        <div class="reply-content reply-border"><h5>投稿：  <%= link_to reply.question.title, question_path(@question_id), class: "link-color" %></h5></div>
+        <div class="reply-content"><h5>回答：  <%= link_to reply.content, question_path(@question_id), class: "link-color" %></h5></div>
       </div>
     </div>
   <% end %>

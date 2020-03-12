@@ -4,15 +4,26 @@
   border-bottom: 2px solid #000;
 }
 
+.show-micropost-title {
+  width: 100%;
+  border-bottom: 3px solid #343a40;
+}
+
+.show-micropost-content {
+  padding: 28px 0px 16px;
+  border-bottom: 1px solid #343a40;
+}
+
 /*new*/
 .new-micropost-title {
-  border-bottom: 2px solid #000;
+  border-bottom: 3px solid #000;
   width: 100%;
 }
 
 .new-micropost-title-txt {
   color: black;
   font-size: 28px;
+  font-weight: 600;
 }
 
 .new-micropost-title-txt:hover {
@@ -31,5 +42,5 @@
 
 .new-micropost {
   width: 100%;
-  margin: 0 10px 10px;
+  margin-bottom: 20px;
 }

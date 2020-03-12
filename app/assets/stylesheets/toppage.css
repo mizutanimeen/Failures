@@ -11,6 +11,12 @@
   float: left;
 }
 
+@media screen and (max-width:360px) {
+  .top-messages-title {
+    font-size: 36px;
+  }
+}
+
 .micropost-bottom {
   color: white;
   background-color: #343a40;
@@ -39,7 +45,19 @@
 }
 
 
+
 /*ranking*/
+
+.rank-title {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.rank-border {
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
 .rank-nonber {
   border-bottom: 2px solid #000;
   padding-top: 12px;
@@ -51,7 +69,15 @@
   padding: 0px 24px 12px;
 }
 
+.rank-title-txt {
+  font-size: 24px;
+  color: black;
+}
+
 .rank-font {
   font-size: 20px;
 }
 
+.rank-title-txt:hover {
+  text-decoration: none;
+}

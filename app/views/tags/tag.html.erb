@@ -1,25 +1,70 @@
 <%= render "layouts/navbar_home" %>
 
 <div class="container">
-  <div class="row">
+  <div class="row mx-1">
     <h2 class="tag-top-title">タグ</h2>
-    
     <div class="tag-p">
+      
       <div class="tags-tag">
-        <h4 class="d-inline-block m-0"><%= link_to "その他", other_tags_path %></h4>
+        <h4 class="tags-tag-title"><%= link_to "その他", other_tags_path, class: "tags-tag-title-txt" %></h4>
         <div class="d-inline-block"><%= @questions.where(tag: "その他").count %> 件</div>
       </div>
-    
+      
       <div class="tags-tag">
-        <h4 class="d-inline-block m-0"><%= link_to "仕事", work_tags_path %></h4>
+        <h4 class="tags-tag-title"><%= link_to "人間関係", human_tags_path, class: "tags-tag-title-txt" %></h4>
+        <div class="d-inline-block"><%= @questions.where(tag: "人間関係").count %> 件</div>
+      </div>      
+      
+      <div class="tags-tag">
+        <h4 class="tags-tag-title"><%= link_to "恋愛", love_tags_path, class: "tags-tag-title-txt" %></h4>
+        <div class="d-inline-block"><%= @questions.where(tag: "恋愛").count %> 件</div>
+      </div>      
+      
+      <div class="tags-tag">
+        <h4 class="tags-tag-title"><%= link_to "仕事", work_tags_path, class: "tags-tag-title-txt" %></h4>
         <div class="d-inline-block"><%= @questions.where(tag: "仕事").count %> 件</div>
       </div>
       
       <div class="tags-tag">
-        <h4 class="d-inline-block m-0"><%= link_to "家庭", home_tags_path %></h4>
+        <h4 class="tags-tag-title"><%= link_to "家庭", home_tags_path, class: "tags-tag-title-txt" %></h4>
         <div class="d-inline-block"><%= @questions.where(tag: "家庭").count %> 件</div>
       </div>
-    </div>
+      
+      <div class="tags-tag">
+        <h4 class="tags-tag-title"><%= link_to "学校", school_tags_path, class: "tags-tag-title-txt" %></h4>
+        <div class="d-inline-block"><%= @questions.where(tag: "学校").count %> 件</div>
+      </div>
+      
+      <div class="tags-tag">
+        <h4 class="tags-tag-title"><%= link_to "勉強", study_tags_path, class: "tags-tag-title-txt" %></h4>
+        <div class="d-inline-block"><%= @questions.where(tag: "勉強").count %> 件</div>
+      </div>
     
+      <div class="tags-tag">
+        <h4 class="tags-tag-title"><%= link_to "プログラミング", programming_tags_path, class: "tags-tag-title-txt" %></h4>
+        <div class="d-inline-block"><%= @questions.where(tag: "プログラミング").count %> 件</div>
+      </div>
+    
+      <div class="tags-tag">
+        <h4 class="tags-tag-title"><%= link_to "美容", beauty_tags_path, class: "tags-tag-title-txt" %></h4>
+        <div class="d-inline-block"><%= @questions.where(tag: "美容").count %> 件</div>
+      </div>
+    
+      <div class="tags-tag">
+        <h4 class="tags-tag-title"><%= link_to "遊び", play_tags_path, class: "tags-tag-title-txt" %></h4>
+        <div class="d-inline-block"><%= @questions.where(tag: "遊び").count %> 件</div>
+      </div>
+    
+      <div class="tags-tag">
+        <h4 class="tags-tag-title"><%= link_to "スポーツ", sports_tags_path, class: "tags-tag-title-txt" %></h4>
+        <div class="d-inline-block"><%= @questions.where(tag: "スポーツ").count %> 件</div>
+      </div>
+    
+      <div class="tags-tag">
+        <h4 class="tags-tag-title"><%= link_to "ニュース", news_tags_path, class: "tags-tag-title-txt" %></h4>
+        <div class="d-inline-block"><%= @questions.where(tag: "ニュース").count %> 件</div>
+      </div>
+  
+    </div>
   </div>
 </div>

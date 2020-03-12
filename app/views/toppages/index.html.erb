@@ -9,12 +9,12 @@
 
   <div class="w-100"> 
     <div class="col-xl-8 p-0 mb-5 float-l">
-      <h1 class="reverse-color">メッセージ一覧</h1>
+      <h1 class="reverse-color top-messages-title">メッセージ一覧</h1>
       
       <% @questions.each do |question| %>
         <div class="frame">
           <ul class="list-unstyled word-table">
-            <li class="toppage-question-title"><h5><%= link_to question.title, question_path(question) %></h5></li>
+            <li class="toppage-question-title"><h5><%= link_to question.title, question_path(question), class: "link-color" %></h5></li>
             <li class="toppage-question-content">
               <%= truncate(question.content, length: 100, omission: ' ') do %>
                 <%= link_to "続きを読む…", question_path(question) %>
@@ -32,7 +32,7 @@
       <% @microposts.each do |micropost| %>
         <div class="top-micropost-block">
           <div class="top-micropost-title word-table">
-            <%= link_to micropost.title, micropost_path(micropost) %>
+            <%= link_to micropost.title, micropost_path(micropost), class: "link-color" %>
           </div> 
           <div class="top-micropost-content word-table">
             <%= truncate(micropost.content, length: 100, omission: ' ') do %>

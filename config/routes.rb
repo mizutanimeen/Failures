@@ -28,6 +28,15 @@ Rails.application.routes.draw do
       get :other
       get :work
       get :home
+      get :sports
+      get :news
+      get :study
+      get :programming
+      get :human
+      get :beauty
+      get :play
+      get :love
+      get :school
     end
   end
   
@@ -39,5 +48,6 @@ Rails.application.routes.draw do
   resources :favorites, only: [:create, :destroy]
   
   resources :microposts 
+  
   get :news, to: "microposts#new"
 end

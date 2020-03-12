@@ -5,7 +5,7 @@
     <% @posts.each do |post| %>
   <div class="frame">
     <ul class="list-unstyled word-table">
-      <li class="toppage-question-title"><h5><%= link_to post.title, question_path(post) %></h5></li>
+      <li class="toppage-question-title"><h5><%= link_to post.title, question_path(post), class: "link-color" %></h5></li>
     </ul>
   </div>
 <% end %>

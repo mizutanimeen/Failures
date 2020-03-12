@@ -27,6 +27,8 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    
+    counts(@user)
   end
 
   def update

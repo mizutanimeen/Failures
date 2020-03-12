@@ -4,7 +4,7 @@
   <div>
     <div class="row">
       <div class="show-question-title word-table">
-        <h3><%= @question.title %></h3>
+        <h3><%= @question .title %></h3>
       </div>
     </div>
     <div>
@@ -14,25 +14,61 @@
         </div>
       </div>
       <div class="row show-question-name">
-        名前：<%= link_to @question.user.name, user_path(@question.user.id) %>
+        名前：<%= link_to @question.user.name, user_path(@question.user.id), class: "link-color" %>
       </div>
       <div class="row d-flex align-items-center justify-content-between show-question-tag">
         
         <% if @question.tag == "その他" %>
           <div>
-            タグ：<%= link_to @question.tag, other_tags_path %>
+            タグ：<%= link_to @question.tag, other_tags_path, class: "link-color" %>
           </div>
+        <% elsif @question.tag == "人間関係" %>
+          <div>
+            タグ：<%= link_to @question.tag, human_tags_path, class: "link-color" %>
+          </div> 
+        <% elsif @question.tag == "恋愛" %>
+          <div>
+            タグ：<%= link_to @question.tag, love_tags_path, class: "link-color" %>
+          </div>          
         <% elsif @question.tag == "仕事" %>
           <div>
-            タグ：<%= link_to @question.tag, work_tags_path %>
+            タグ：<%= link_to @question.tag, work_tags_path, class: "link-color" %>
           </div>
         <% elsif @question.tag == "家庭" %>
           <div>
-            タグ：<%= link_to @question.tag, home_tags_path %>
+            タグ：<%= link_to @question.tag, home_tags_path, class: "link-color" %>
           </div>
+        <% elsif @question.tag == "学校" %>
+          <div>
+            タグ：<%= link_to @question.tag, school_tags_path, class: "link-color" %>
+          </div>          
+        <% elsif @question.tag == "勉強" %>
+          <div>
+            タグ：<%= link_to @question.tag, study_tags_path, class: "link-color" %>
+          </div>          
+        <% elsif @question.tag == "プログラミング" %>
+          <div>
+            タグ：<%= link_to @question.tag, programming_tags_path, class: "link-color" %>
+          </div>          
+        <% elsif @question.tag == "美容" %>
+          <div>
+            タグ：<%= link_to @question.tag, beauty_tags_path, class: "link-color" %>
+          </div>      
+        <% elsif @question.tag == "遊び" %>
+          <div>
+            タグ：<%= link_to @question.tag, play_tags_path, class: "link-color" %>
+          </div>
+        <% elsif @question.tag == "スポーツ" %>
+          <div>
+            タグ：<%= link_to @question.tag, sports_tags_path, class: "link-color" %>
+          </div>         
+        <% elsif @question.tag == "ニュース" %>
+          <div>
+            タグ：<%= link_to @question.tag, news_tags_path, class: "link-color" %>
+          </div>             
         <% end %>
         
-        <div class="d-flex flex-row align-items-center ">
+        <div class="d-flex flex-row align-items-center">
           <% if logged_in? %>
             <%= render "layouts/favorite", question: @question %>
           <% else %>
@@ -122,17 +158,19 @@
   <div class="row relation">
     <h3 class="relation-title">関連記事</h3>
     <% @questions.first(3).each do |question| %>
-      <div class="relation-title-txt">
-        <% unless @question == question %>
-          <%= link_to question.title, question_path(question) %>
-        <% else %>
-          <% @questions.first(4).each.with_index(1) do |question, i| %>
-            <% if i == 4 %>
-              <%= link_to question.title, question_path(question) %>
-            <% end %>
+      <% unless @question == question %>
+        <div class="relation-title-txt">    
+          <%= link_to question.title, question_path(question), class: "link-color" %>
+        </div>
+      <% else %>
+        <% @questions.first(4).each.with_index(1) do |question, i| %>
+          <% if i == 4 %>
+            <div class="relation-title-txt">    
+              <%= link_to question.title, question_path(question), class: "link-color" %>
+            </div>
           <% end %>
         <% end %>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>
