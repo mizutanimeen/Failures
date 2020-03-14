@@ -50,4 +50,6 @@ Rails.application.routes.draw do
   resources :microposts 
   
   get :news, to: "microposts#new"
+  
+  get :contact, to: "contacts#index" 
 end

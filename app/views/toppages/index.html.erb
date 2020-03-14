@@ -42,7 +42,9 @@
         </div>
       <% end %>
       <div class="micropost-bottom">
-        <%= link_to "一覧へ", news_path, class: "micropost-bottom" %>
+        <%= link_to news_path, class: "micropost-bottom" do %>
+          <p style="font-size: 20px">一覧へ <span style="font-size: 16px">(<%= @count_micropost %>件)</span></p>
+        <% end %>
       </div>
     </aside>
     

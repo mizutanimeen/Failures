@@ -25,4 +25,8 @@ class ApplicationController < ActionController::Base
   def question_counts(question)
     @count_favoriters = question.favoriters.count
   end
+  
+  def micropost_counts(micropost)
+    @count_micropost = micropost.count
+  end
 end

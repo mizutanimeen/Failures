@@ -80,9 +80,11 @@
           <div class="m-1">
             <div>いいね  <%= @count_favoriters %></div>
           </div>
-
-          <% if current_user == @question.user %>
-            <%= link_to "Delete", @question, method: :delete, data: { confirm: "メッセージを本当に削除しますか？" }, class: 'btn btn-danger btn-sm' %>
+          
+          <% if logged_in? %>
+            <% if current_user == @question.user || current_user.admin? %>
+              <%= link_to "Delete", @question, method: :delete, data: { confirm: "メッセージを本当に削除しますか？" }, class: 'btn btn-danger btn-sm' %>
+            <% end %>
           <% end %>
         </div>
       </div>

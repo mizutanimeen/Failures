@@ -5,7 +5,9 @@ class ToppagesController < ApplicationController
     end
     @questions = Question.page(params[:page]).per(5).order('created_at desc')
     
-    @microposts = Micropost.page(params[:page]).per(3).order('created_at desc')
+    @microposts = Micropost.limit(3).order('created_at desc')
+    @microposts_count = Micropost.all
+    micropost_counts(@microposts_count)
   end
   
   def ranking
