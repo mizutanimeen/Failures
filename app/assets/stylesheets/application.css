@@ -14,9 +14,9 @@
  *= require_self
  */
  
- .link-color {
-   color: black;
- }
+ /*.link-color {*/
+ /*  color: black;*/
+ /*}*/
  
  .link-color:hover {
    text-decoration: none;

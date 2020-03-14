@@ -11,6 +11,11 @@
   float: left;
 }
 
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
 @media screen and (max-width:375px) {
   .top-messages-title {
     font-size: 36px;
@@ -18,7 +23,7 @@
   
   .home-nav {
     width: 100%;
-    font-size: 12px;
+    font-size: 13px;
     display: flex;
     justify-content: space-around;  
   }
@@ -78,7 +83,7 @@
 
 .rank-title-txt {
   font-size: 24px;
-  color: black;
+  /*color: black;*/
 }
 
 .rank-font {
