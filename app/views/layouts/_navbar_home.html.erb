@@ -1,12 +1,8 @@
 <header class="mb-4">
-  <nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <nav class="navbar navbar-expand navbar-light bg-light">
     <%= link_to "Failures", root_path, class: "navbar-brand ml-sm-4 logo" %>
     
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    
-    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+    <div class="display-sm-none justify-content-end w-100" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <%= link_to "詳細条件", search_path, class: "nav-link" %>
         
@@ -16,9 +12,9 @@
             <%= f.submit "検索", class: "btn btn-md btn-dark ml-1" %>
           </div>
         <% end %>
-    
+      
         <% if logged_in? %>
-        <li class="nav-item dropdown">
+          <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
               <%= current_user.name %>
             </a>
@@ -34,7 +30,34 @@
         <% end %>
       </ul>
     </div>
+      
+    <div class="display-sm-block justify-content-end w-100" id="navbarSupportedContent">
+      <ul class="navbar-nav align-items-center">
+        <div>
+          <%= link_to search_path do %>
+            <i class="fas fa-search"></i>
+          <% end %>
+        </div>
+      
+        <% if logged_in? %>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+              <%= current_user.name %>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li class="dropdown-item"><%= link_to "プロフィール", user_path(current_user), class: "link-color" %></li>
+              <li class="dropdown-divider"></li>
+              <li class="dropdown-item"><%= link_to "ログアウト", logout_path, method: :delete, class: "link-color" %></li>
+            </ul>
+          </li>
+        <% else %>
+          <li class="nav-item"><%= link_to "新規登録", signup_path, class: "nav-link nav-sign ml-1" %></li>
+          <li class="nav-item"><%= link_to "ログイン", login_path, class: "nav-link nav-sign" %></li>
+        <% end %>
+      </ul>
+    </div>
   </nav>
+  
   <nav class="navbar navbar-expand navbar-dark bg-dark">
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <ul class="navbar-nav home-nav">

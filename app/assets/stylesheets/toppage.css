@@ -27,6 +27,33 @@
     display: flex;
     justify-content: space-around;  
   }
+  
+  .display-sm-none {
+    display: none !important;
+  }
+  
+  .display-sm-block {
+    display: flex;
+  }
+  
+  .fa-search {
+    color: black;
+    font-size: 20px;
+  }
+  
+  .nav-sign {
+    padding: 8px 4px!important;
+  }
+}
+
+@media screen and (min-width:375px) {
+  .display-sm-block {
+    display: none !important;
+  }
+  
+  .display-sm-none {
+    display: flex;
+  }
 }
 
 .micropost-bottom {
