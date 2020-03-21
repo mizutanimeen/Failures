@@ -1,53 +1,64 @@
 class TagsController < ApplicationController
   def tag
     @questions = Question.all
+    set_tags_paths
   end
   
   def other
-    @questions = Question.where(tag: "その他").page(params[:page]).per(10).order('created_at desc')
+    set_tag(0)
   end
   
   def human
-    @questions = Question.where(tag: "人間関係").page(params[:page]).per(10).order('created_at desc')
+    set_tag(1)
   end
     
   def love
-    @questions = Question.where(tag: "恋愛").page(params[:page]).per(10).order('created_at desc')
+    set_tag(2)
   end
   
   def work
-    @questions = Question.where(tag: "仕事").page(params[:page]).per(10).order('created_at desc')
+    set_tag(3)
   end
   
   def home
-    @questions = Question.where(tag: "家庭").page(params[:page]).per(10).order('created_at desc')
+    set_tag(4)
   end
   
   def school
-    @questions = Question.where(tag: "学校").page(params[:page]).per(10).order('created_at desc')
+    set_tag(5)
   end
   
   def study
-    @questions = Question.where(tag: "勉強").page(params[:page]).per(10).order('created_at desc')
+    set_tag(6)
   end
   
   def programming
-    @questions = Question.where(tag: "プログラミング").page(params[:page]).per(10).order('created_at desc')
+    set_tag(7)
   end
   
   def beauty
-    @questions = Question.where(tag: "美容").page(params[:page]).per(10).order('created_at desc')
+    set_tag(8)
   end
   
   def play
-    @questions = Question.where(tag: "遊び").page(params[:page]).per(10).order('created_at desc')
+    set_tag(9)
   end
   
   def sports
-    @questions = Question.where(tag: "遊び").page(params[:page]).per(10).order('created_at desc')
+    set_tag(10)
   end
   
   def news
-    @questions = Question.where(tag: "ニュース").page(params[:page]).per(10).order('created_at desc')
+    set_tag(11)
+  end
+  
+  
+  private
+  
+  
+  def set_tag(number)
+    @tags = ["その他", "人間関係", "恋愛", "仕事", "家庭", "学校", "勉強", "プログラミング", "美容", "遊び", "スポーツ", "ニュース"]
+    @questions = Question.where(tag: @tags[number]).page(params[:page]).per(10).order('created_at desc')
+    @tag = @tags[number]
   end
 end

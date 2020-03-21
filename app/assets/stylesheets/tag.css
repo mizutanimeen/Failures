@@ -41,21 +41,18 @@
   padding: 20px 0px;
 }
 
-.tags-content-txt {
-  font-size: 16px;
-  padding-bottom: 20px;
-  border-bottom: 2px solid #343a40;
-  margin-bottom: 10px;
-}
+
 
 .font-size-16 {
   font-size: 16px;
 }
 
-.tag-show-title-txt {
-  /*color: #000;*/
-}
-
 .tag-show-title-txt:hover {
   text-decoration: none;
+}
+
+.tag-like {
+  margin-bottom: 10px;
+  border-bottom: 2px solid #343a40;
+  padding-bottom: 10px;
 }

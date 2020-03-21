@@ -1,4 +1,6 @@
 class Question < ApplicationRecord
+  is_impressionable
+
   validates :title, presence: true, length: { maximum: 50 }
   validates :tag, presence: true, length: { maximum: 50 }
   validates :content, presence: true, length: { maximum: 1000 }

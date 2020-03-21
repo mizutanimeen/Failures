@@ -2,10 +2,29 @@
 
 <div class="container">
   <div class="row m-3">
-    <table class="w-100 word-table">
+    <table class="w-100 word-table m-auto">
       <thead>
         <tr>
-          <th class="result-border"><% if @questions.count > 0 && @searchtext == 1 %>検索結果 <%= @questions.count %>件<% end %></th>
+          <th class="result-border"><% if @questions.count > 0 && @searchtext == 1 %><div class="w-100">検索結果 <%= @questions.count %>件</div><% end %>
+          <% if @questions.count != 0 && @searchtext == 1 %>
+            <div class="select-r d-inline-block">
+              <%= form_with(url: result_path, method: :get, local: true) do |f| %>
+                <%= f.select :sort, [
+                ["投稿が新しい順","投稿が新しい順"],
+                ["投稿が古い順","投稿が古い順"],
+                ["いいねが多い順","いいねが多い順"],
+                ["いいねが少ない順","いいねが少ない順"]
+                ], selected: @setting %>
+
+              <%= f.submit "テスト", class: "d-none", id: "btn1", onclick: "btn1Click();" %>
+              
+              <%= hidden_field_tag :title, @title %>
+              <%= hidden_field_tag :tag, @tag %>
+              <%= hidden_field_tag :period, @period %>
+              <% end %>
+            </div>
+          <% end %>
+          </th>
         </tr>
       </thead>
       <tbody class="word-table">
@@ -16,10 +35,22 @@
             <tr class="word-table">
               <td class="word-table">
                 <h3 class="word-table"><%= link_to question.title, question_path(question), class: "link-color" %></h3>
-                <%= truncate(question.content, length: 100, omission: ' ') do %>
+                <%= truncate(question.content, length: 1000, omission: ' ') do %>
                   <%= link_to "続きを読む…", question_path(question) %>
                 <% end %>
                 <div class="word-table">タグ：  <%= question.tag %></div>
+                <div class="d-flex flex-row align-items-center mt-3">
+                  <% if logged_in? %>
+                    <%= render "layouts/favorite", question: question %>
+                  <% else %>
+                    <%= link_to login_path do %>
+                      <i class="far fa-heart"></i>
+                    <% end %>
+                  <% end %>
+                  <div class="m-1">
+                    <div>いいね  <%= question.favoriters.count %></div>
+                  </div>
+                </div>
                 <div class="result-m"><%= question.created_at %></div>
               </td>
             </tr>

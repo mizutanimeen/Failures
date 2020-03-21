@@ -29,4 +29,9 @@ class ApplicationController < ActionController::Base
   def micropost_counts(micropost)
     @count_micropost = micropost.count
   end
+  
+  def set_tags_paths
+    @tags = ["その他", "人間関係", "恋愛", "仕事", "家庭", "学校", "勉強", "プログラミング", "美容", "遊び", "スポーツ", "ニュース"]
+    @path = ["other", "human", "love", "work", "home", "school", "study", "programming", "beauty", "play", "sports", "news"]
+  end
 end

@@ -7,16 +7,26 @@
       
       <% @rankings.each.with_index(1) do |rank, i| %>
         <div class="rank-border">
-          <h3 class="rank-nonber word-table"><%= i %>位  <%= link_to rank.title, question_path(rank), class: "rank-title-txt" %></h3>
+          <h3 class="rank-nonber word-table"><%= i %>位  <%= link_to rank.title, question_path(rank), class: "rank-title-txt link-color" %></h3>
           <ul class="list-unstyled word-table m-0">
             <li class="toppage-question-content rank-font">
               <%= truncate(rank.content, length: 200, omission: ' ') do %>
                 <%= link_to "続きを読む…", question_path(rank) %>
               <% end %>
             </li>
-            <li class="d-flex d-row rank-p">
-              <div class="d-flex flex-row align-items-center">
-                <i class="fas fa-heart mr-1"></i><%= rank.favorites.count %>
+            <li class="row d-flex rank-p flex-row">
+              <div class="row d-flex w-100 align-items-center justify-content-end">
+                <% if logged_in? %>
+                  <%= render "layouts/favorite", question: rank %>
+                <% else %>
+                  <%= link_to login_path do %>
+                    <i class="far fa-heart"></i>
+                  <% end %>
+                <% end %>
+              
+                <div class="m-1">
+                  <div>いいね  <%= rank.favoriters.count %></div>
+                </div>
               </div>
             </li>
           </ul>

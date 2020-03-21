@@ -2,6 +2,7 @@ class QuestionsController < ApplicationController
   before_action :require_user_logged_in, only: [:new, :create, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy] 
   # ↑自分の物か確認
+  impressionist
   
   def index
   end
@@ -19,7 +20,11 @@ class QuestionsController < ApplicationController
     
     question_counts(@question)
     
-    @questions = Question.where(tag: @question.tag)
+    @questions = Question.where(tag: @question.tag).where.not(id: @question.id)
+
+    set_tags_paths
+    
+    impressionist(@question)
   end
 
   def new
@@ -94,9 +99,32 @@ class QuestionsController < ApplicationController
         @questions = @questions.where("? <= created_at", search_date - 1.days )
       end
       
-      @questions = @questions.page(params[:page]).per(5).order('created_at desc')
       @searchtext = 1
-    else
+      @title = params[:title]
+      @tag = params[:tag]
+      @period = params[:period]
+      
+      if params[:sort].present? && params[:sort] == "投稿が新しい順"
+        @questions = @questions.page(params[:page]).per(10).order("created_at desc")
+      elsif params[:sort].present? && params[:sort] == "投稿が古い順"
+        @questions = @questions.page(params[:page]).per(10).order("created_at desc").reverse_order
+      elsif params[:sort].present? && params[:sort] == "いいねが多い順"
+        questions = @questions.select('questions.id, count(favorites.question_id) as count_favorites_question_id').left_joins(:favorites).group('questions.id').order('count_favorites_question_id desc, favorites.question_id')        
+        @questions = Question.find(questions.map{|o|o.id})
+        @questions =  Kaminari.paginate_array(@questions).page(params[:page]).per(10)
+      elsif params[:sort].present? && params[:sort] == "いいねが少ない順"
+        questions = @questions.select('questions.id, count(favorites.question_id) as count_favorites_question_id').left_joins(:favorites).group('questions.id').order('count_favorites_question_id desc, favorites.question_id')        
+        @questions = Question.find(questions.map{|o|o.id}).reverse
+        @questions =  Kaminari.paginate_array(@questions).page(params[:page]).per(10)
+      else
+        @questions = @questions.page(params[:page]).per(10).order('created_at desc')
+      end
+      
+      if params[:sort].present?
+        @setting = params[:sort]
+      end
+      
+    elsif not params[:sort].present?
       @questions = Question.none
     end
   end

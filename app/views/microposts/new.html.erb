@@ -6,11 +6,11 @@
     <% @microposts.each do |micropost| %>
       <div class="new-micropost word-table">
         <div class="new-micropost-title">
-          <%= link_to micropost.title, micropost_path(micropost), class: "new-micropost-title-txt" %>
+          <%= link_to micropost.title, micropost_path(micropost), class: "new-micropost-title-txt link-color" %>
         </div>
         <div class="new-micropost-content">
           <%= truncate(micropost.content, length: 300, omission: ' ') do %>
-            <%= link_to "続きを読む…", micropost_path(micropost) %>
+            <%= link_to "続きを読む…", micropost_path(micropost), class: " link-color" %>
           <% end %>
         </div>
         <div class="new-micropost-time">

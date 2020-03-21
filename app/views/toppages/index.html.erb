@@ -13,14 +13,37 @@
       
       <% @questions.each do |question| %>
         <div class="frame">
-          <ul class="list-unstyled word-table">
-            <li class="toppage-question-title"><h5><%= link_to question.title, question_path(question), class: "link-color" %></h5></li>
-            <li class="toppage-question-content">
+          
+          <div class="toppage-question-title">
+            <h5><%= link_to question.title, question_path(question), class: "link-color" %></h5>
+          </div>
+          
+          <div class="toppage-question-content">
+            <div class="word-table w-100 mb-1">
               <%= truncate(question.content, length: 100, omission: ' ') do %>
-                <%= link_to "続きを読む…", question_path(question) %>
+                <%= link_to "続きを読む…", question_path(question), class: "link-color" %>
               <% end %>
-            </li>
-          </ul>
+            </div>
+            
+            <div class="d-flex flex-row align-items-center justify-content-end">
+              <div class="mr-3">
+                閲覧数：<%= question.impressionist_count %>
+              </div>
+              
+              <% if logged_in? %>
+                <%= render "layouts/favorite", question: question %>
+              <% else %>
+                <%= link_to login_path do %>
+                  <i class="far fa-heart"></i>
+                <% end %>
+              <% end %>
+              
+              <div class="m-1">
+                <div>いいね  <%= question.favoriters.count %></div>
+              </div>
+            </div>
+            
+          </div>
         </div>
       <% end %>
       
