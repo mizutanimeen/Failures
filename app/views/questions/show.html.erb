@@ -106,8 +106,10 @@
             <%= text_url_to_link(h(safe_join(answer.content.split("\n"),tag(:br)))).html_safe %>
           </div>
           <div class="w-100 d-flex flex-row justify-content-end">
-            <% if current_user == answer.user || current_user == @question.user || current_user.admin? %>
-              <%= link_to "Delete", answer, method: :delete, data: { confirm: "コメントを本当に削除しますか？" }, class: 'btn btn-danger btn-sm' %>
+            <% if logged_in? %>
+              <% if current_user == answer.user || current_user == @question.user || current_user.admin? %>
+                <%= link_to "Delete", answer, method: :delete, data: { confirm: "コメントを本当に削除しますか？" }, class: 'btn btn-danger btn-sm' %>
+              <% end %>
             <% end %>
           </div>
         </div>
