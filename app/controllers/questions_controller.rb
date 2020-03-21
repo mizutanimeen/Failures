@@ -137,9 +137,13 @@ class QuestionsController < ApplicationController
   end
   
   def correct_user
-    @question = current_user.questions.find_by(id: params[:id])
-    unless @question
-      redirect_to root_url
+    if current_user.admin?
+      @question = Question.find(params[:id])
+    else
+      @question = current_user.questions.find_by(id: params[:id])
+      unless @question
+        redirect_to root_url
+      end
     end
   end
 end

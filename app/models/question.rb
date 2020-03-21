@@ -10,6 +10,7 @@ class Question < ApplicationRecord
   has_many :answers, dependent: :destroy 
   
   has_many :favorites
+  has_many :favorites, dependent: :destroy
   has_many :favoriters, through: :favorites, source: :user
   
 end

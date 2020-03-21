@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :questions, dependent: :destroy 
   
   has_many :answers
+  has_many :answers, dependent: :destroy
   
   has_many :microposts
   
