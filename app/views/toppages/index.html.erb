@@ -14,11 +14,11 @@
       <% @questions.each do |question| %>
         <div class="frame">
           
-          <div class="toppage-question-title">
+          <div class="toppage-question-title word-table w-100">
             <h5><%= link_to question.title, question_path(question), class: "link-color" %></h5>
           </div>
           
-          <div class="toppage-question-content">
+          <div class="toppage-question-content word-table w-100">
             <div class="word-table w-100 mb-1">
               <%= truncate(question.content, length: 100, omission: ' ') do %>
                 <%= link_to "続きを読む…", question_path(question), class: "link-color" %>

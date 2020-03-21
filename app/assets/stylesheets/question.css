@@ -10,6 +10,11 @@ p {
   table-layout: fixed;
   word-wrap: break-word;
 }
+@media screen and (max-width:375px) {
+  .w-sm-100 {
+    width: 100%;
+  }
+}
 
 /*index*/
 
@@ -104,6 +109,10 @@ p {
   padding-left: 24px;
   margin-top: 10px;
   margin-bottom: 20px;
+}
+
+.answer-name {
+  padding: 0 10px;
 }
 
 .btn-default {
