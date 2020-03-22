@@ -11,24 +11,29 @@
             <%= image_tag "default_user.png", class: "resize-img" %>
           <% end %>
         </div>
-        <% if logged_in? %>
-          <% if current_user == @user || current_user.admin? %>
-            <div class="card-body">
-              <% if current_user.admin? && current_user == @user %>
-                <div class="mb-2">
-                  <%= link_to "管理ページ", microposts_path, class: "btn btn-block btn-success" %>
-                </div>
-              <% end %>
+        
+        <div class="card-body">
+          <% if logged_in? %>
+            <% if current_user.admin? && current_user == @user %>
               <div class="mb-2">
-                <%= link_to "TOPに戻る", root_path, class: "btn btn-block btn-success" %>
+                <%= link_to "管理ページ", microposts_path, class: "btn btn-block btn-success" %>
               </div>
+            <% end %>
+          <% end %>
+              
+          <div class="mb-2">
+            <%= link_to "TOPに戻る", root_path, class: "btn btn-block btn-success" %>
+          </div>
+            
+          <% if logged_in? %>
+            <% if current_user == @user || current_user.admin? %>
               <%= link_to "編集", edit_user_path(@user), class: "btn btn-block btn-success" %>
               <div class="mt-2">
                 <%= link_to "アカウント削除", @user, method: :delete, data: { confirm: "アカウントを本当にアカウントを削除しますか？" }, class: "btn btn-block btn-danger" %>
               </div>
-            </div>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
       </div>  
     </div>
     <div class="col-sm-8 col-md-6 col-xl-8 offset-sm-1">
