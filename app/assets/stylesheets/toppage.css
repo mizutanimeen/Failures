@@ -16,7 +16,11 @@
   font-weight: bold;
 }
 
-@media screen and (max-width:375px) {
+.display-sm-block {
+  display: none;
+}
+
+@media screen and (max-width: 750px) {
   .top-messages-title {
     font-size: 36px;
   }
@@ -29,7 +33,7 @@
   }
   
   .display-sm-none {
-    display: none !important;
+    display: none;
   }
   
   .display-sm-block {
@@ -43,16 +47,6 @@
   
   .nav-sign {
     padding: 8px 4px!important;
-  }
-}
-
-@media screen and (min-width:375px) {
-  .display-sm-block {
-    display: none !important;
-  }
-  
-  .display-sm-none {
-    display: flex;
   }
 }
 

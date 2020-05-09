@@ -12,6 +12,12 @@
       </div>
     </div>
   <% end %>
+  
+  <% if @count_answers == 0 %>
+    <div class=" m-3">
+      <h4>回答はありません</h4>
+    </div>
+  <% end %>
 
   <%= paginate @replys, window: 2 %>
 </div>

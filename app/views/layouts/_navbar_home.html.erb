@@ -2,8 +2,8 @@
   <nav class="navbar navbar-expand navbar-light bg-light">
     <%= link_to "Failures", root_path, class: "navbar-brand ml-sm-4 logo" %>
     
-    <div class="display-sm-none justify-content-end w-100" id="navbarSupportedContent">
-      <ul class="navbar-nav">
+    <div class="display-sm-none w-100" id="navbarSupportedContent">
+      <ul class="navbar-nav justify-content-end">
         <%= link_to "詳細条件", search_path, class: "nav-link" %>
         
         <%= form_with(url: search_questions_path, method: :get, local: true, class: "pr-3") do |f| %>
